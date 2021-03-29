@@ -6,8 +6,8 @@ const NODE_ENV: string = process.env.NODE_ENV || 'development';
 
 // application
 const PORT: number = +process.env.PORT || 3000;
-const END_POINT: string = process.env.END_POINT || 'graphql';
-
+const GRAPHQL_END_POINT: string = process.env.GRAPHQL_END_POINT || 'graphql';
+const DOMAIN: string = process.env.DOMAIN || 'localhost';
 // MongoDB
 const ATLAS_DB_USER = process.env.ATLAS_USER || 'admin'
 const ATLAS_DB_PASS = process.env.ATLAS_PASS || 'bYBQuQybB3qHsy3L'
@@ -30,13 +30,14 @@ const environment = {
 		url: ATLAS_DB_URL
 	}
 };
-const TYPEORM = environment[NODE_ENV];
+const TYPE_ORM = environment[NODE_ENV];
 
 export {
 	NODE_ENV,
+	DOMAIN,
 	PORT,
-	END_POINT,
-	TYPEORM,
+	GRAPHQL_END_POINT,
+	TYPE_ORM,
 	ATLAS_DB_URL
 };
 

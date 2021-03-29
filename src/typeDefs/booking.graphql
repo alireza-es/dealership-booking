@@ -1,0 +1,27 @@
+input CreateBookingInput {
+  customerName: String!
+  customerPhone: String!
+  customerEmail: String
+  vehicleMake: String!
+  vehicleModel: String!
+  vehicleVIN: String!
+}
+
+type Booking {
+	_id: ID!
+	customerName: String!
+	customerPhone: String!
+	customerEmail: String
+	vehicleMake: String!
+	vehicleModel: String!
+	vehicleVIN: String!
+	bookingAt: Float!
+}
+
+type Query {
+	bookings: [Booking]
+}
+
+type Mutation {
+	createBooking(input: CreateBookingInput!): Booking
+}
