@@ -6,7 +6,7 @@ const NODE_ENV: string = process.env.NODE_ENV || 'development';
 
 // application
 const PORT: number = +process.env.PORT || 3000;
-const GRAPHQL_END_POINT: string = process.env.GRAPHQL_END_POINT || 'graphql';
+const BOOKING_END_POINT: string = process.env.BOOKING_END_POINT || 'graphql';
 const DOMAIN: string = process.env.DOMAIN || 'localhost';
 // MongoDB
 const ATLAS_DB_USER = process.env.ATLAS_USER || 'admin'
@@ -36,7 +36,7 @@ export {
 	NODE_ENV,
 	DOMAIN,
 	PORT,
-	GRAPHQL_END_POINT,
+	BOOKING_END_POINT,
 	TYPE_ORM,
 	ATLAS_DB_URL
 };

@@ -1,5 +1,5 @@
 import {
-	GRAPHQL_END_POINT, NODE_ENV
+	BOOKING_END_POINT, NODE_ENV
 } from '@environments';
 import { Injectable, Logger } from '@nestjs/common';
 import { GqlModuleOptions, GqlOptionsFactory } from '@nestjs/graphql';
@@ -21,7 +21,7 @@ export class GraphqlService implements GqlOptionsFactory {
 			resolverValidationOptions: {
 				requireResolversForResolveType: 'ignore'
 			},
-			path: `/${GRAPHQL_END_POINT!}`,
+			path: `/${BOOKING_END_POINT!}`,
 			cors: true,
 			bodyParserConfig: { limit: '50mb' },
 			introspection: true,
@@ -40,7 +40,7 @@ export class GraphqlService implements GqlOptionsFactory {
 				tabs: [
 					{
 						name: 'Bookings',
-						endpoint: GRAPHQL_END_POINT,
+						endpoint: BOOKING_END_POINT,
 						query:
 `{
   bookings {
@@ -91,7 +91,7 @@ export class GraphqlService implements GqlOptionsFactory {
 				return response
 			},
 			subscriptions: {
-				path: `/${GRAPHQL_END_POINT!}`,
+				path: `/${BOOKING_END_POINT!}`,
 				keepAlive: 1000,
 				onConnect: async () => {
 					NODE_ENV !== 'production' &&

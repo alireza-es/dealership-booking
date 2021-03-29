@@ -1,4 +1,4 @@
-import { DOMAIN, GRAPHQL_END_POINT, NODE_ENV, PORT } from '@environments';
+import { BOOKING_END_POINT, DOMAIN, NODE_ENV, PORT } from '@environments';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as bodyParser from 'body-parser';
@@ -48,14 +48,14 @@ async function bootstrap() {
         Logger.log(
           `🆗 Server ready at http://${DOMAIN}:${chalk
             .hex(env_color)
-            .bold(PORT.toString())}/${GRAPHQL_END_POINT}`,
+            .bold(PORT.toString())}/${BOOKING_END_POINT}`,
           'Bootstrap',
           false
         ),
         Logger.log(
           `🆗  Subscriptions ready at ws://${DOMAIN}:${chalk
             .hex(env_color)
-            .bold(PORT.toString())}/${GRAPHQL_END_POINT}`,
+            .bold(PORT.toString())}/${BOOKING_END_POINT}`,
           'Bootstrap',
           false
         ))
