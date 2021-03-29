@@ -14,9 +14,8 @@ async function bootstrap() {
     // NOTE: database connect
     const connection = getConnection('default');
     const { isConnected } = connection
-    // connection.runMigrations();
     isConnected
-      ? Logger.log(`🌨️  Database connected`, 'TypeORM', false)
+      ? Logger.log(`🌱  Database connected`, 'TypeORM', false)
       : Logger.error(`❌  Database connect error`, '', 'TypeORM', false)
 
     // NOTE: adapter for e2e testing
@@ -42,26 +41,26 @@ async function bootstrap() {
     const env_color = '#87e8de';
     NODE_ENV !== 'production'
       ? (Logger.log(
-        `🤬  Application is running on: ${await app.getUrl()}`,
+        `🆗  Application is running on: ${await app.getUrl()}`,
         'NestJS',
         false
       ),
         Logger.log(
-          `🚀  Server ready at http://${DOMAIN}:${chalk
+          `🆗 Server ready at http://${DOMAIN}:${chalk
             .hex(env_color)
             .bold(PORT.toString())}/${GRAPHQL_END_POINT}`,
           'Bootstrap',
           false
         ),
         Logger.log(
-          `🚀  Subscriptions ready at ws://${DOMAIN}:${chalk
+          `🆗  Subscriptions ready at ws://${DOMAIN}:${chalk
             .hex(env_color)
             .bold(PORT.toString())}/${GRAPHQL_END_POINT}`,
           'Bootstrap',
           false
         ))
       : Logger.log(
-        `🚀  Server is listening on port ${chalk
+        `🆗  Server is listening on port ${chalk
           .hex(env_color)
           .bold(PORT.toString())}`,
         'Bootstrap',

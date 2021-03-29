@@ -6,8 +6,6 @@ import { GqlModuleOptions, GqlOptionsFactory } from '@nestjs/graphql';
 import { MemcachedCache } from 'apollo-server-cache-memcached';
 import { PubSub } from 'graphql-subscriptions';
 import { MockList } from 'graphql-tools';
-import directiveResolvers from './directiveResolvers';
-import schemaDirectives from './schemaDirectives';
 const pubsub = new PubSub();
 
 @Injectable()
@@ -15,13 +13,9 @@ export class GraphqlService implements GqlOptionsFactory {
 	async createGqlOptions(): Promise<GqlModuleOptions> {
 		return {
 			typePaths: ['./**/*.graphql'],
-			resolvers: {
-				// JSON: GraphQLJSON,
-				// JSONObject: GraphQLJSONObject
-			},
 			mocks: NODE_ENV === 'testing' && {
 				Query: () => ({
-					users: () => new MockList([2, 6])
+					bookings: () => new MockList([2, 6])
 				})
 			},
 			resolverValidationOptions: {
@@ -30,8 +24,6 @@ export class GraphqlService implements GqlOptionsFactory {
 			path: `/${GRAPHQL_END_POINT!}`,
 			cors: true,
 			bodyParserConfig: { limit: '50mb' },
-			schemaDirectives,
-			directiveResolvers,
 			introspection: true,
 			playground: NODE_ENV !== 'production' && {
 				settings: {
@@ -44,13 +36,20 @@ export class GraphqlService implements GqlOptionsFactory {
 					'queryPlan.hideQueryPlanResponse': false,
 					'request.credentials': 'include', // possible values: 'omit', 'include', 'same-origin'
 					'tracing.hideTracingResponse': false
-				}
-				// tabs: [
-				// 	{
-				// 		endpoint: END_POINT,
-				// 		query: '{ hello }'
-				// 	}
-				// ]
+				},
+				tabs: [
+					{
+						name: 'Bookings',
+						endpoint: GRAPHQL_END_POINT,
+						query:
+`{
+  bookings {
+	  _id
+	  customerName
+	}
+}`
+					}
+				]
 			},
 			tracing: NODE_ENV !== 'production',
 			cacheControl: NODE_ENV === 'production' && {

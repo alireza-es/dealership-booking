@@ -15,7 +15,7 @@ type Booking {
 	vehicleMake: String!
 	vehicleModel: String!
 	vehicleVIN: String!
-	bookingAt: Float!
+	bookingAt: Float! 
 }
 
 type Query {
