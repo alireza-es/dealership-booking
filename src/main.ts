@@ -68,6 +68,7 @@ async function bootstrap() {
         false
       )
   } catch (error) {
+    Logger.error(error);
     Logger.error(`❌  Error starting server, ${error}`, '', 'Bootstrap', false)
     process.exit()
   }

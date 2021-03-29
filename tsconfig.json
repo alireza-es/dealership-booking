@@ -13,12 +13,22 @@
 		"incremental": true,
 		"noLib": false,
 		"noImplicitAny": false,
-		"typeRoots": ["node_modules/@types", "types"],
+		"typeRoots": [
+			"node_modules/@types",
+			"types"
+		],
 		"paths": {
-			"@environments": ["src/environments"]
+			"@config": ["src/config"],
+			"@environments": ["src/environments"],
+			"@generator": ["src/generator/graphql.schema"],
+			"@entities": ["src/entities"],
+			"@utils": ["src/utils"]
 		}
 	},
-	"include": ["src/**/*.ts", "test"],
+	"include": [
+		"src/**/*.ts",
+		"test"
+	],
 	"compileOnSave": false,
 	"exclude": [
 		"node_modules",

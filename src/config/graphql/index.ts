@@ -6,7 +6,6 @@ import { GqlModuleOptions, GqlOptionsFactory } from '@nestjs/graphql';
 import { MemcachedCache } from 'apollo-server-cache-memcached';
 import { PubSub } from 'graphql-subscriptions';
 import { MockList } from 'graphql-tools';
-import GraphQLJSON, { GraphQLJSONObject } from 'graphql-type-json';
 import directiveResolvers from './directiveResolvers';
 import schemaDirectives from './schemaDirectives';
 const pubsub = new PubSub();
@@ -17,8 +16,8 @@ export class GraphqlService implements GqlOptionsFactory {
 		return {
 			typePaths: ['./**/*.graphql'],
 			resolvers: {
-				JSON: GraphQLJSON,
-				JSONObject: GraphQLJSONObject
+				// JSON: GraphQLJSON,
+				// JSONObject: GraphQLJSONObject
 			},
 			mocks: NODE_ENV === 'testing' && {
 				Query: () => ({

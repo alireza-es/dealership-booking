@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CacheService, GraphqlService, TypeOrmService } from './config';
+import * as Resolvers from './resolvers';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { CacheService, GraphqlService, TypeOrmService } from './config';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ...Object.values(Resolvers)],
 })
 export class AppModule {}
