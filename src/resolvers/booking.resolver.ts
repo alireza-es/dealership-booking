@@ -16,14 +16,6 @@ export class BookingResolver {
 	async createBooking(
 		@Args('input') input: CreateBookingInput
 	): Promise<Booking> {
-		// const { name } = input
-
-		// const company = await getMongoRepository(Company).findOne({ name })
-
-		// if (company) {
-		// 	throw new ForbiddenError('Company already existed.')
-		// }
-
 		return await getMongoRepository(Booking).save(new Booking({ ...input }));
 	}
 }

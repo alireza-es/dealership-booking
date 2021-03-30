@@ -14,6 +14,7 @@ export class CreateBookingInput {
     vehicleMake: string;
     vehicleModel: string;
     vehicleVIN: string;
+    bookingAt: number;
 }
 
 export class Booking {

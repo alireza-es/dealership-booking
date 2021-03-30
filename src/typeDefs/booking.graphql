@@ -5,6 +5,7 @@ input CreateBookingInput {
   vehicleMake: String!
   vehicleModel: String!
   vehicleVIN: String!
+  bookingAt: Float! 
 }
 
 type Booking {
