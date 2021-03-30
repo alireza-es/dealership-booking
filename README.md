@@ -5,7 +5,7 @@
 # Description
 An MVP program that would manage bookings for a Dealership.
 The program can accept or reject bookings based on availabilities.
-## Definition:
+## Definition
 - The working hours of a dealership is 9AM - 5PM
 - A Booking is 2 hours long
 ## Booking Capacity Endpoint
