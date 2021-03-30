@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CacheService, GraphqlService, TypeOrmService } from './config';
+import { DateScalar } from './config/graphql/scalars';
 import * as Resolvers from './resolvers';
 
 @Module({
@@ -19,6 +20,6 @@ import * as Resolvers from './resolvers';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, ...Object.values(Resolvers)],
+  providers: [AppService, ...Object.values(Resolvers), DateScalar],
 })
 export class AppModule {}

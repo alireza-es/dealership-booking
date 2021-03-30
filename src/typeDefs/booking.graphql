@@ -7,7 +7,6 @@ input CreateBookingInput {
   vehicleVIN: String!
   bookingAt: Float! 
 }
-
 type Booking {
 	_id: ID!
 	customerName: String!
@@ -17,6 +16,8 @@ type Booking {
 	vehicleModel: String!
 	vehicleVIN: String!
 	bookingAt: Float! 
+	createdAt: Float! 
+	lastUpdatedAt: Float!
 }
 
 type Query {
@@ -26,3 +27,5 @@ type Query {
 type Mutation {
 	createBooking(input: CreateBookingInput!): Booking
 }
+
+scalar JSON

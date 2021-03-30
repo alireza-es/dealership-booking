@@ -41,6 +41,11 @@ export class Booking {
 	@Column()
 	bookingAt: number
 
+
+	@Expose()
+	@Column()
+	createdAt: number
+
 	constructor(booking: Partial<Booking>) {
 		if (booking) {
 			Object.assign(
@@ -51,6 +56,7 @@ export class Booking {
 			)
 			this._id = this._id || uuidv4()
 			this.bookingAt = this.bookingAt || +new Date()
+			this.createdAt = +new Date();
 		}
 	}
 }

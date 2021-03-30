@@ -6,6 +6,7 @@ import { GqlModuleOptions, GqlOptionsFactory } from '@nestjs/graphql';
 import { MemcachedCache } from 'apollo-server-cache-memcached';
 import { PubSub } from 'graphql-subscriptions';
 import { MockList } from 'graphql-tools';
+import GraphQLJSON from 'graphql-type-json';
 const pubsub = new PubSub();
 
 @Injectable()
@@ -18,6 +19,7 @@ export class GraphqlService implements GqlOptionsFactory {
 					bookings: () => new MockList([2, 6])
 				})
 			},
+			resolvers: { JSON: GraphQLJSON },
 			resolverValidationOptions: {
 				requireResolversForResolveType: 'ignore'
 			},

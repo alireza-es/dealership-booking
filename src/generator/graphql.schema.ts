@@ -26,6 +26,8 @@ export class Booking {
     vehicleModel: string;
     vehicleVIN: string;
     bookingAt: number;
+    createdAt: number;
+    lastUpdatedAt: number;
 }
 
 export abstract class IQuery {
@@ -35,3 +37,5 @@ export abstract class IQuery {
 export abstract class IMutation {
     abstract createBooking(input: CreateBookingInput): Booking | Promise<Booking>;
 }
+
+export type JSON = any;
