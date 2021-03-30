@@ -12,7 +12,7 @@ You can define in the constants that:
 - A Booking is 2 hours long
 ## Booking Capacity Endpoint
 The booking capacity can be define via an endpoint (default should be 2). Meaning that 2 bookings can be executed at the same time.
-## Booking creation Endpoint
+## Booking Creation Endpoint
 An endpoint that allows us to create a Booking, with the following data:
 
 **Customer:**
