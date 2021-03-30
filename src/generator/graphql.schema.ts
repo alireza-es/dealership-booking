@@ -10,7 +10,7 @@
 export class CreateBookingInput {
     customerID: string;
     vehicleID: string;
-    bookingAt: number;
+    bookingAt: Date;
 }
 
 export class CreateCustomerInput {

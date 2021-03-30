@@ -32,9 +32,11 @@ export class BookingResolver {
 		if (!vehicle)
 			throw new ForbiddenError('Vehicle not found');
 
-		const booking = new Booking({ ...input });
-		booking.customer = customer;
-		booking.vehicle = vehicle;
+		const booking = new Booking({
+			bookingAt: +input.bookingAt,
+			customer: customer,
+			vehicle: vehicle
+		 });
 		
 		return await getMongoRepository(Booking).save(booking);
 	}

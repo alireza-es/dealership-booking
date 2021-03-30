@@ -18,7 +18,7 @@ export const create_sample_booking =
     "input":{
         "customerID":"458cc69c-bab5-435a-8205-6d06cfe8d982",
         "vehicleID":"ad40fcff-bfb0-401a-8c09-a8fa9852054b",
-        "bookingAt":1617095338404
+        "bookingAt":"05/25/2021 15:30"
     }
 }`
 };

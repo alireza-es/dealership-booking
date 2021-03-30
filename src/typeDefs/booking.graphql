@@ -1,7 +1,7 @@
 input CreateBookingInput {
   customerID: ID!
   vehicleID: ID!
-  bookingAt: Float! 
+  bookingAt: Date! 
 }
 type Booking {
 	_id: ID!
