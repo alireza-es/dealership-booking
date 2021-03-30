@@ -22,7 +22,8 @@
 			"@environments": ["src/environments"],
 			"@generator": ["src/generator/graphql.schema"],
 			"@entities": ["src/entities"],
-			"@utils": ["src/utils"]
+			"@utils": ["src/utils"],
+			"@constants": ["src/constant"]
 		}
 	},
 	"include": [

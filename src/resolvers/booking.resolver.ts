@@ -1,6 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ForbiddenError } from 'apollo-server';
+import * as date from 'date-and-time';
 import { getMongoRepository } from 'typeorm';
+import * as CONSTANTS from '../constant/index';
 import { Booking, Customer, Vehicle } from '../entities';
 import { CreateBookingInput } from '../generator/graphql.schema';
 
@@ -23,6 +25,15 @@ export class BookingResolver {
 
 		if (!input.vehicleID)
 			throw new ForbiddenError('vehicleID is not provided')
+
+		const bookingAtTime = date.parse(date.format(input.bookingAt, 'hh:mm A'), 'hh:mm A');
+
+		const startWorkingDateTime = date.parse(CONSTANTS.DEALERSHIP_WORKING_HOURS.START_TIME, 'hh:mm A');
+
+		const endWorkingDateTime = date.parse(CONSTANTS.DEALERSHIP_WORKING_HOURS.END_TIME, 'hh:mm A');
+		
+		if (bookingAtTime < startWorkingDateTime || bookingAtTime > endWorkingDateTime)
+			throw new ForbiddenError('Booking time is not in dealership working hours');
 
 		const customer = await getMongoRepository(Customer).findOne({ _id: input.customerID });
 		if (!customer)

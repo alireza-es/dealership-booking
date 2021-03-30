@@ -14,7 +14,7 @@
 		"^@config(.*)$": "<rootDir>/src/config$1",
 		"^@environments(.*)$": "<rootDir>/src/environments$1",
 		"^@entities(.*)$": "<rootDir>/src/entities$1",
-		"^@shared(.*)$": "<rootDir>/src/shared$1",
+		"^@constants(.*)$": "<rootDir>/src/constants$1",
 		"^@utils(.*)$": "<rootDir>/src/utils$1",
 		"^@validations(.*)$": "<rootDir>/src/validations$1"
 	}
