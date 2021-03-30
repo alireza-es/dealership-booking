@@ -1,46 +1,44 @@
-import { Customer, Vehicle } from '@generator';
 import { Expose, plainToClass } from 'class-transformer';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 import { v4 as uuidv4 } from "uuid";
 
 @Entity({
-	name: 'bookings',
+	name: 'customers',
 	orderBy: {
-		createdAt: 'DESC'
+		name: 'ASC'
 	}
 })
-export class Booking {
+export class Customer {
 	@Expose()
 	@ObjectIdColumn()
 	_id: string
 
 	@Expose()
 	@Column()
-	customer: Customer
+	name: string
 
 	@Expose()
 	@Column()
-	vehicle: Vehicle
+	phone: string
 
 	@Expose()
 	@Column()
-	bookingAt: number
+	email: string
 
 
 	@Expose()
 	@Column()
 	createdAt: number
 
-	constructor(booking: Partial<Booking>) {
-		if (booking) {
+	constructor(customer: Partial<Customer>) {
+		if (customer) {
 			Object.assign(
 				this,
-				plainToClass(Booking, booking, {
+				plainToClass(Customer, customer, {
 					excludeExtraneousValues: true
 				})
 			)
 			this._id = this._id || uuidv4()
-			this.bookingAt = this.bookingAt || +new Date()
 			this.createdAt = +new Date();
 		}
 	}

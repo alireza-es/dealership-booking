@@ -1,0 +1,18 @@
+input CreateVehicleInput{
+    make: String!
+	model: String!
+	VIN: String!
+}
+type Vehicle{
+    _id: ID!
+    make: String!
+	model: String!
+	VIN: String!
+    createdAt: Float!
+}
+type Query{
+    vehicles: [Vehicle]
+}
+type Mutation{
+    createVehicle(input: CreateVehicleInput!):Vehicle
+}

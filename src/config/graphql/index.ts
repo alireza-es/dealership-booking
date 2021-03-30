@@ -7,6 +7,7 @@ import { MemcachedCache } from 'apollo-server-cache-memcached';
 import { PubSub } from 'graphql-subscriptions';
 import { MockList } from 'graphql-tools';
 import GraphQLJSON from 'graphql-type-json';
+import { create_sample_booking, create_sample_customer, create_sample_vehicle, sample_queries } from './samples';
 const pubsub = new PubSub();
 
 @Injectable()
@@ -43,13 +44,25 @@ export class GraphqlService implements GqlOptionsFactory {
 					{
 						name: 'Bookings',
 						endpoint: BOOKING_END_POINT,
-						query:
-`{
-  bookings {
-	  _id
-	  customerName
-	}
-}`
+						query: sample_queries
+					},
+					{
+						name: 'Create Customer',
+						endpoint: BOOKING_END_POINT,
+						query: create_sample_customer.mutation,
+						variables: create_sample_customer.variables
+					},
+					{
+						name: 'Create Vehicle',
+						endpoint: BOOKING_END_POINT,
+						query: create_sample_vehicle.mutation,
+						variables: create_sample_vehicle.variables
+					},
+					{
+						name: 'Create Booking',
+						endpoint: BOOKING_END_POINT,
+						query: create_sample_booking.mutation,
+						variables: create_sample_booking.variables
 					}
 				]
 			},

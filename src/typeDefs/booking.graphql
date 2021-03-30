@@ -1,20 +1,12 @@
 input CreateBookingInput {
-  customerName: String!
-  customerPhone: String!
-  customerEmail: String
-  vehicleMake: String!
-  vehicleModel: String!
-  vehicleVIN: String!
+  customerID: ID!
+  vehicleID: ID!
   bookingAt: Float! 
 }
 type Booking {
 	_id: ID!
-	customerName: String!
-	customerPhone: String!
-	customerEmail: String
-	vehicleMake: String!
-	vehicleModel: String!
-	vehicleVIN: String!
+	customer: Customer!
+	vehicle: Vehicle!
 	bookingAt: Float! 
 	createdAt: Float! 
 	lastUpdatedAt: Float!
@@ -28,4 +20,3 @@ type Mutation {
 	createBooking(input: CreateBookingInput!): Booking
 }
 
-scalar JSON

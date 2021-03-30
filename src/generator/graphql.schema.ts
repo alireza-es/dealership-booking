@@ -8,23 +8,27 @@
 /* tslint:disable */
 /* eslint-disable */
 export class CreateBookingInput {
-    customerName: string;
-    customerPhone: string;
-    customerEmail?: string;
-    vehicleMake: string;
-    vehicleModel: string;
-    vehicleVIN: string;
+    customerID: string;
+    vehicleID: string;
     bookingAt: number;
+}
+
+export class CreateCustomerInput {
+    name: string;
+    phone: string;
+    email?: string;
+}
+
+export class CreateVehicleInput {
+    make: string;
+    model: string;
+    VIN: string;
 }
 
 export class Booking {
     _id: string;
-    customerName: string;
-    customerPhone: string;
-    customerEmail?: string;
-    vehicleMake: string;
-    vehicleModel: string;
-    vehicleVIN: string;
+    customer: Customer;
+    vehicle: Vehicle;
     bookingAt: number;
     createdAt: number;
     lastUpdatedAt: number;
@@ -32,10 +36,34 @@ export class Booking {
 
 export abstract class IQuery {
     abstract bookings(): Booking[] | Promise<Booking[]>;
+
+    abstract customers(): Customer[] | Promise<Customer[]>;
+
+    abstract vehicles(): Vehicle[] | Promise<Vehicle[]>;
 }
 
 export abstract class IMutation {
     abstract createBooking(input: CreateBookingInput): Booking | Promise<Booking>;
+
+    abstract createCustomer(input: CreateCustomerInput): Customer | Promise<Customer>;
+
+    abstract createVehicle(input: CreateVehicleInput): Vehicle | Promise<Vehicle>;
+}
+
+export class Customer {
+    _id: string;
+    name: string;
+    phone: string;
+    email?: string;
+    createdAt: number;
+}
+
+export class Vehicle {
+    _id: string;
+    make: string;
+    model: string;
+    VIN: string;
+    createdAt: number;
 }
 
 export type JSON = any;
