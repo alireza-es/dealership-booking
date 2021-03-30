@@ -1,8 +1,8 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { ForbiddenError } from 'apollo-server';
+import { BOOKING_CAPACITY_KEY } from 'src/constant';
 import { Setting } from 'src/entities/setting.entity';
 import { getMongoRepository } from 'typeorm';
-const BOOKING_CAPACITY_KEY = 'setting:booking-capacity';
 @Resolver('Setting')
 export class BookingCapacityResolver {
     @Mutation()
