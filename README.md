@@ -34,12 +34,26 @@ Endpoint that would return all the Bookings for a provided Day.
 Endpoint that would return the bookings for a vehicle VIN.
 
 # Installation & Run
-## 1. Install the project packages
+## 1. Clone the project
+```bash
+$ git clone https://github.com/alireza-es/dealership-booking.git
+```
+
+```bash
+$ cd dealership-booking
+```
+
+## 2. Install packages
+### 2.1 Install Nest.js globally
+```bash
+$ npm i -g @nestjs/cli
+```
+### 2.1 Install the project dependencies
 ```bash
 $ npm install
 ```
 
-## 2. Running the app
+## 3. Running the app
 
 ```bash
 # development
@@ -48,7 +62,7 @@ $ npm run start
 # production mode
 $ npm run start:prod
 ```
-## 3. Open the GraphQL endpoint
+## 4. Open the GraphQL endpoint
 Open the graphQL endpoint on: 
 <a href="http://localhost:3000/graphql" target="_blank">`http://localhost:3000/graphql`</a>
 
