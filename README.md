@@ -1,13 +1,11 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
+  <img src="https://nestjs.com/img/logo_text.svg" height="100" alt="Nest Logo" />
+  <img src="https://graphql.org/img/logo.svg" height="100" alt="GraphQL Logo" >
+  
 # Description
-A program to manage bookings.
 An MVP program that would manage bookings for a Dealership.
-The program should be able to accept or reject bookings based on availabilities.
+The program can accept or reject bookings based on availabilities.
 ## Definition:
-You can define in the constants that:
 - The working hours of a dealership is 9AM - 5PM
 - A Booking is 2 hours long
 ## Booking Capacity Endpoint
@@ -54,9 +52,4 @@ $ npm run start:prod
 Open the graphQL endpoint on: 
 <a href="http://localhost:3000/graphql" target="_blank">`http://localhost:3000/graphql`</a>
 
-## 4. Run Tests (Optional)
-
-```bash
-# unit tests
-$ npm run test
-```
+![](./static/graphql.png)
