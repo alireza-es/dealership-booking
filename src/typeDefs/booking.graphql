@@ -14,6 +14,8 @@ type Booking {
 
 type Query {
 	bookings: [Booking]
+	bookingsByDate(input: Date!): [Booking]
+	bookingsByVIN(input: String!): [Booking]
 }
 
 type Mutation {

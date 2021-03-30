@@ -7,7 +7,15 @@ import { MemcachedCache } from 'apollo-server-cache-memcached';
 import { PubSub } from 'graphql-subscriptions';
 import { MockList } from 'graphql-tools';
 import GraphQLJSON from 'graphql-type-json';
-import { create_booking_sample, create_customer_sample, create_vehicle_sample, queries_sample, update_booking_capacity_sample } from './sample_data';
+import {
+	bookings_by_date_sample,
+	bookings_by_vin_sample,
+	create_booking_sample,
+	create_customer_sample,
+	create_vehicle_sample,
+	queries_sample,
+	update_booking_capacity_sample
+} from './sample_data';
 const pubsub = new PubSub();
 
 @Injectable()
@@ -69,6 +77,18 @@ export class GraphqlService implements GqlOptionsFactory {
 						endpoint: BOOKING_END_POINT,
 						query: update_booking_capacity_sample.mutation,
 						variables: update_booking_capacity_sample.variables
+					},
+					{
+						name: 'Bookings Query By Date',
+						endpoint: BOOKING_END_POINT,
+						query: bookings_by_date_sample.query,
+						variables: bookings_by_date_sample.variables
+					},
+					{
+						name: 'Bookings Query By VIN',
+						endpoint: BOOKING_END_POINT,
+						query: bookings_by_vin_sample.query,
+						variables: bookings_by_vin_sample.variables
 					}
 				]
 			},

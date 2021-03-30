@@ -15,7 +15,8 @@ export class BookingCapacityResolver {
 
         let setting = await getMongoRepository(Setting).findOne({ key: BOOKING_CAPACITY_KEY });
         if (!setting)
-            setting = new Setting({ key: BOOKING_CAPACITY_KEY, value: input.toString() });
+            setting = new Setting({ key: BOOKING_CAPACITY_KEY });
+        setting.value = input.toString();
 
         await getMongoRepository(Setting).save(setting);
         

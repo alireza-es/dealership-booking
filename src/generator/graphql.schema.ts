@@ -47,6 +47,10 @@ export class Booking {
 export abstract class IQuery {
     abstract bookings(): Booking[] | Promise<Booking[]>;
 
+    abstract bookingsByDate(input: Date): Booking[] | Promise<Booking[]>;
+
+    abstract bookingsByVIN(input: string): Booking[] | Promise<Booking[]>;
+
     abstract customers(): Customer[] | Promise<Customer[]>;
 
     abstract vehicles(): Vehicle[] | Promise<Vehicle[]>;
