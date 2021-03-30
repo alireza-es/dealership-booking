@@ -1,7 +1,7 @@
+import { BOOKING_CAPACITY_KEY, BOOKING_DURATION_IN_HOURS, DEALERSHIP_WORKING_HOURS, DEFAULT_BOOKING_CAPACITY } from '@constants';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ForbiddenError } from 'apollo-server';
 import * as date from 'date-and-time';
-import { BOOKING_CAPACITY_KEY, BOOKING_DURATION_IN_HOURS, DEALERSHIP_WORKING_HOURS, DEFAULT_BOOKING_CAPACITY } from 'src/constant';
 import { getMongoRepository } from 'typeorm';
 import { Booking, Customer, Setting, Vehicle } from '../entities';
 import { CreateBookingInput } from '../generator/graphql.schema';

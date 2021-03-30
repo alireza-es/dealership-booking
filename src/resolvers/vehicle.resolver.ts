@@ -1,6 +1,6 @@
+import { Vehicle } from '@entities';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ForbiddenError } from 'apollo-server';
-import { Vehicle } from 'src/entities/vehicle.entity';
 import { getMongoRepository } from 'typeorm';
 import { CreateVehicleInput } from '../generator/graphql.schema';
 

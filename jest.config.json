@@ -9,13 +9,10 @@
 	"coverageDirectory": "./coverage",
 	"collectCoverage": true,
 	"moduleNameMapper": {
-		"^@auth(.*)$": "<rootDir>/src/auth$1",
-		"^@common(.*)$": "<rootDir>/src/common$1",
 		"^@config(.*)$": "<rootDir>/src/config$1",
 		"^@environments(.*)$": "<rootDir>/src/environments$1",
 		"^@entities(.*)$": "<rootDir>/src/entities$1",
-		"^@constants(.*)$": "<rootDir>/src/constants$1",
-		"^@utils(.*)$": "<rootDir>/src/utils$1",
-		"^@validations(.*)$": "<rootDir>/src/validations$1"
+		"^@constants(.*)$": "<rootDir>/src/constant$1",
+		"^@generator(.*)$": "<rootDir>/src/generator/graphql.schema$1"
 	}
 }

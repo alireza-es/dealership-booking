@@ -1,6 +1,6 @@
+import { Customer } from '@entities';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ForbiddenError } from 'apollo-server';
-import { Customer } from 'src/entities/customer.entity';
 import { getMongoRepository } from 'typeorm';
 import { CreateCustomerInput } from '../generator/graphql.schema';
 
