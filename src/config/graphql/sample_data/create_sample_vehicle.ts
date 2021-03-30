@@ -12,7 +12,7 @@ export const create_sample_vehicle =
     "input":{
         "make":"Tesla",
         "model":"1995",
-        "VIN":"1326569845621362"
+        "VIN":"13265698456213629"
     }
 }`
 };

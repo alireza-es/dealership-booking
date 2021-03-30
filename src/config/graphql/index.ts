@@ -7,7 +7,7 @@ import { MemcachedCache } from 'apollo-server-cache-memcached';
 import { PubSub } from 'graphql-subscriptions';
 import { MockList } from 'graphql-tools';
 import GraphQLJSON from 'graphql-type-json';
-import { create_sample_booking, create_sample_customer, create_sample_vehicle, sample_queries } from './samples';
+import { create_sample_booking, create_sample_customer, create_sample_vehicle, sample_queries } from './sample_data';
 const pubsub = new PubSub();
 
 @Injectable()
