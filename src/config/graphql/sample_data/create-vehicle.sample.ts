@@ -1,4 +1,4 @@
-export const create_sample_vehicle =
+export const create_vehicle_sample =
     {
     mutation:
 `mutation createVehicle($input: CreateVehicleInput!){

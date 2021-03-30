@@ -1,5 +1,6 @@
-export * from './create_sample_booking';
-export * from './create_sample_customer';
-export * from './create_sample_vehicle';
-export * from './queries';
+export * from './create-booking.sample';
+export * from './create-customer.sample';
+export * from './create-vehicle.sample';
+export * from './queries.sample';
+export * from './update-booking-capacity.sample';
 

@@ -1,4 +1,4 @@
-export const create_sample_booking =
+export const create_booking_sample =
     {
     mutation:
 `mutation createBooking($input: CreateBookingInput!) {

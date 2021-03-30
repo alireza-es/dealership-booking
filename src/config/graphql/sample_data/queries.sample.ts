@@ -1,4 +1,4 @@
-export const sample_queries =
+export const queries_sample =
 `{
   bookings {
     _id

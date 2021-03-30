@@ -1,4 +1,4 @@
-export const create_sample_customer =
+export const create_customer_sample =
 {
     mutation:
 `mutation createCustomer($input: CreateCustomerInput!) {

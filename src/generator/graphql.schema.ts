@@ -25,6 +25,16 @@ export class CreateVehicleInput {
     VIN: string;
 }
 
+export abstract class IMutation {
+    abstract updateBookingCapacity(input: number): boolean | Promise<boolean>;
+
+    abstract createBooking(input: CreateBookingInput): Booking | Promise<Booking>;
+
+    abstract createCustomer(input: CreateCustomerInput): Customer | Promise<Customer>;
+
+    abstract createVehicle(input: CreateVehicleInput): Vehicle | Promise<Vehicle>;
+}
+
 export class Booking {
     _id: string;
     customer: Customer;
@@ -40,14 +50,6 @@ export abstract class IQuery {
     abstract customers(): Customer[] | Promise<Customer[]>;
 
     abstract vehicles(): Vehicle[] | Promise<Vehicle[]>;
-}
-
-export abstract class IMutation {
-    abstract createBooking(input: CreateBookingInput): Booking | Promise<Booking>;
-
-    abstract createCustomer(input: CreateCustomerInput): Customer | Promise<Customer>;
-
-    abstract createVehicle(input: CreateVehicleInput): Vehicle | Promise<Vehicle>;
 }
 
 export class Customer {
