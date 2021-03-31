@@ -35,6 +35,7 @@
     "apollo-server-plugin-response-cache": "^0.7.0",
     "cache-manager": "^3.4.1",
     "chalk": "^3.0.0",
+    "class-transformer": "^0.4.0",
     "compression": "^1.7.4",
     "date-and-time": "^0.14.2",
     "dateformat": "^4.5.1",
