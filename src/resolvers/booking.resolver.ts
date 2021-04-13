@@ -1,16 +1,27 @@
 import { BOOKING_CAPACITY_KEY, BOOKING_DURATION_IN_HOURS, DEALERSHIP_WORKING_HOURS, DEFAULT_BOOKING_CAPACITY } from '@constants';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { InjectRepository } from '@nestjs/typeorm';
 import { ForbiddenError } from 'apollo-server';
 import * as date from 'date-and-time';
-import { getMongoRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Booking, Customer, Setting, Vehicle } from '../entities';
 import { CreateBookingInput } from '../generator/graphql.schema';
 
 @Resolver('Booking')
 export class BookingResolver {
+	constructor(
+		@InjectRepository(Booking)
+		private bookingRepository: Repository<Booking>,
+		@InjectRepository(Customer)
+		private customerRepository: Repository<Customer>,
+		@InjectRepository(Vehicle)
+		private vehicleRepository: Repository<Vehicle>,
+		@InjectRepository(Setting)
+		private settingRepository: Repository<Setting>
+	){}
 	@Query()
 	async bookings(): Promise<Booking[]> {
-		return getMongoRepository(Booking).find({
+		return this.bookingRepository.find({
 			cache: true
 		})
 	}
@@ -19,7 +30,7 @@ export class BookingResolver {
 	async bookingsByDate(@Args('input') input: Date): Promise<Booking[]> {
 		const start_day = new Date(input.getFullYear(), input.getMonth(), input.getDate());
 		const end_day = date.addDays(start_day, 1);
-		return getMongoRepository(Booking).find({
+		return this.bookingRepository.find({
 			where: {
 				$and: [
 					{
@@ -39,7 +50,7 @@ export class BookingResolver {
 		if (!input)
 			throw new ForbiddenError('Vehicle VIN should be provided')
 
-		return getMongoRepository(Booking).find({
+		return this.bookingRepository.find({
 			where: {
 				'vehicle.VIN': input
 			},
@@ -64,11 +75,11 @@ export class BookingResolver {
 		if (await this.isExceededCapacity(input))
 			throw new ForbiddenError('Booking time is not acceptable. Capacity is full.')
 
-		const customer = await getMongoRepository(Customer).findOne({ _id: input.customerID });
+		const customer = await this.customerRepository.findOne({ _id: input.customerID });
 		if (!customer)
 			throw new ForbiddenError('Customer not found');
 
-		const vehicle = await getMongoRepository(Vehicle).findOne({ _id: input.vehicleID });
+		const vehicle = await this.vehicleRepository.findOne({ _id: input.vehicleID });
 		if (!vehicle)
 			throw new ForbiddenError('Vehicle not found');
 
@@ -78,10 +89,10 @@ export class BookingResolver {
 			vehicle: vehicle
 		});
 
-		return await getMongoRepository(Booking).save(booking);
+		return await this.bookingRepository.save(booking);
 	}
 	private async isExceededCapacity(input: CreateBookingInput): Promise<boolean> {
-		const setting = await getMongoRepository(Setting).findOne({ key: BOOKING_CAPACITY_KEY });
+		const setting = await this.settingRepository.findOne({ key: BOOKING_CAPACITY_KEY });
 		let capacity = Number(setting?.value);
 		if (Number.isNaN(capacity))
 			capacity = DEFAULT_BOOKING_CAPACITY;
@@ -90,7 +101,7 @@ export class BookingResolver {
 			start: input.bookingAt.getTime() as any,
 			end: date.addHours(input.bookingAt, BOOKING_DURATION_IN_HOURS).getTime() as any,
 		};
-		const bookedInRange = await getMongoRepository(Booking)
+		const bookedInRange = await this.bookingRepository
 			.findAndCount({
 				where: {
 					$and: [

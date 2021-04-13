@@ -1,10 +1,15 @@
 import { BOOKING_CAPACITY_KEY } from '@constants';
 import { Setting } from '@entities';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { InjectRepository } from '@nestjs/typeorm';
 import { ForbiddenError } from 'apollo-server';
-import { getMongoRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 @Resolver('Setting')
 export class BookingCapacityResolver {
+    constructor(
+        @InjectRepository(Setting)
+        private settingRepository: Repository<Setting>
+    ){}
     @Mutation()
     async updateBookingCapacity(
         @Args('input') input: number
@@ -13,12 +18,12 @@ export class BookingCapacityResolver {
         if (input < 0)
             throw new ForbiddenError('Invalid capacity. Capacity should be a positive number')
 
-        let setting = await getMongoRepository(Setting).findOne({ key: BOOKING_CAPACITY_KEY });
+        let setting = await this.settingRepository.findOne({ key: BOOKING_CAPACITY_KEY });
         if (!setting)
             setting = new Setting({ key: BOOKING_CAPACITY_KEY });
         setting.value = input.toString();
 
-        await getMongoRepository(Setting).save(setting);
+        await this.settingRepository.save(setting);
         
         return true;
     }

@@ -1,3 +1,5 @@
+import { Booking, Customer, Setting } from '@entities';
+import { Vehicle } from '@generator';
 import { CacheModule, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -15,6 +17,7 @@ import * as Resolvers from './resolvers';
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmService
     }),
+    TypeOrmModule.forFeature([Customer, Booking, Setting, Vehicle]),
     CacheModule.registerAsync({
       useClass: CacheService
     }),

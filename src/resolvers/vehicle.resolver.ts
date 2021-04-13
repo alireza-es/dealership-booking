@@ -1,14 +1,18 @@
 import { Vehicle } from '@entities';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { InjectRepository } from '@nestjs/typeorm';
 import { ForbiddenError } from 'apollo-server';
-import { getMongoRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateVehicleInput } from '../generator/graphql.schema';
 
 @Resolver('Vehicle')
 export class VehicleResolver {
+	constructor(
+		@InjectRepository(Vehicle)
+		private vehicleRepository: Repository<Vehicle>) { }
 	@Query()
 	async vehicles(): Promise<Vehicle[]> {
-		return getMongoRepository(Vehicle).find({
+		return this.vehicleRepository.find({
 			cache: true
 		})
 	}
@@ -24,10 +28,10 @@ export class VehicleResolver {
 		if (input.VIN.length !== 17)
 			throw new ForbiddenError('Vehicle VIN should be a 17 length string');
 		
-		const existVIN = await getMongoRepository(Vehicle).findOne({ VIN: input.VIN });
+		const existVIN = await this.vehicleRepository.findOne({ VIN: input.VIN });
 		if (existVIN)
 			throw new ForbiddenError('Vehicle exist with this VIN');
 		
-		return await getMongoRepository(Vehicle).save(new Vehicle({ ...input }));
+		return await this.vehicleRepository.save(new Vehicle({ ...input }));
 	}
 }

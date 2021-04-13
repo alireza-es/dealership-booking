@@ -1,14 +1,18 @@
 import { Customer } from '@entities';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { InjectRepository } from '@nestjs/typeorm';
 import { ForbiddenError } from 'apollo-server';
-import { getMongoRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateCustomerInput } from '../generator/graphql.schema';
 
 @Resolver('Customer')
 export class CustomerResolver {
+	constructor(
+		@InjectRepository(Customer)
+		private customerRepository: Repository<Customer>) { }
 	@Query()
 	async customers(): Promise<Customer[]> {
-		return getMongoRepository(Customer).find({
+		return this.customerRepository.find({
 			cache: true
 		})
 	}
@@ -23,10 +27,10 @@ export class CustomerResolver {
 		if (!input.phone)
 			throw new ForbiddenError('Customer phone is not provided');
 		
-		const existCustomer = await getMongoRepository(Customer).findOne({ phone: input.phone });
+		const existCustomer = await this.customerRepository.findOne({ phone: input.phone });
 		if (existCustomer)
 			throw new ForbiddenError('Customer already exists with this phone');
 		
-		return await getMongoRepository(Customer).save(new Customer({ ...input }));
+		return await this.customerRepository.save(new Customer({ ...input }));
 	}
 }
